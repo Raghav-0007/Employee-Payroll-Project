@@ -1,6 +1,9 @@
 package com.bridgelabz.employeepayrollapp.controllers;
 
 
+import com.bridgelabz.employeepayrollapp.dto.EmployeePayrollDTO;
+import com.bridgelabz.employeepayrollapp.dto.ResponseDTO;
+import com.bridgelabz.employeepayrollapp.model.EmployeePayrollData;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +23,11 @@ public class EmployeePayrollController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> addEmployeePayrollData(){
-        return new ResponseEntity<>("create employee data successful", HttpStatus.OK);
+    public ResponseEntity<ResponseDTO> addEmployeePayrollData(@RequestBody EmployeePayrollDTO empPayrollDTO){
+        EmployeePayrollData empData=null;
+        empData=new EmployeePayrollData(1, empPayrollDTO.name, empPayrollDTO.salary);
+        ResponseDTO resDTO=new ResponseDTO("Created employee payroll data successfully", empData);
+        return new ResponseEntity<>(resDTO, HttpStatus.OK);
     }
 
     @PutMapping("/update")
