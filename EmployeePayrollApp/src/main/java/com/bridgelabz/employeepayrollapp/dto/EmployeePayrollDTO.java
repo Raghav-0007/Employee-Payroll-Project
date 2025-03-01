@@ -3,7 +3,12 @@ package com.bridgelabz.employeepayrollapp.dto;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
+import lombok.ToString;
 
+import java.time.LocalDate;
+import java.util.List;
+
+@ToString
 public class EmployeePayrollDTO {
 
     @NotEmpty(message = "Employee name cant be null")
@@ -13,13 +18,9 @@ public class EmployeePayrollDTO {
     @Min(value = 500, message = "min wage should be more than 500")
     public long salary;
 
-    public EmployeePayrollDTO(String name, long salary){
-        this.name=name;
-        this.salary=salary;
-    }
-
-    @Override
-    public String toString() {
-        return "name="+name+":salary="+salary;
-    }
+    private String gender;
+    private LocalDate startDate;
+    private String note;
+    private String profilePic;
+    private List<String> departments;
 }
